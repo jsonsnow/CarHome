@@ -10,4 +10,6 @@
 
 @interface CLNewsViewController : UITableViewController
 
+-(instancetype)initWithType:(NSInteger)num;
+
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "XTPageViewController.h"
+#import "CLSHowContentTool.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    UIStoryboard *mainBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    XTPageViewController *pageViewController = [mainBoard instantiateViewControllerWithIdentifier:@"PageController"];
+    pageViewController.delegate   = [CLSHowContentTool sharedManager];
+    pageViewController.dataSource = [CLSHowContentTool sharedManager];
+    
+    
     return YES;
 }
 
