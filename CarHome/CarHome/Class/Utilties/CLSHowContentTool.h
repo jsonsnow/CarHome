@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "XTPageViewController.h"
 
-@interface CLSHowContentTool : NSObject<XTPageViewControllerDataSource>
+@interface CLSHowContentTool : NSObject<XTPageViewControllerDataSource,XTPageViewControllerDelegate>
 
 +(instancetype)sharedManager;
 

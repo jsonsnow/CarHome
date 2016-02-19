@@ -17,6 +17,7 @@
 		8CE4C5571C76EBE60080AF93 /* XTTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C54D1C76EBE60080AF93 /* XTTabBar.m */; };
 		8CE4C5581C76EBE60080AF93 /* XTTabBarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C54F1C76EBE60080AF93 /* XTTabBarScrollView.m */; };
 		8CE4C5591C76EBE60080AF93 /* CLSHowContentTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5541C76EBE60080AF93 /* CLSHowContentTool.m */; };
+		8CE4C55C1C76F5190080AF93 /* CLNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C55B1C76F5190080AF93 /* CLNewsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		8CE4C5501C76EBE60080AF93 /* XTTabBarStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTTabBarStyle.h; sourceTree = "<group>"; };
 		8CE4C5531C76EBE60080AF93 /* CLSHowContentTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLSHowContentTool.h; sourceTree = "<group>"; };
 		8CE4C5541C76EBE60080AF93 /* CLSHowContentTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLSHowContentTool.m; sourceTree = "<group>"; };
+		8CE4C55A1C76F5190080AF93 /* CLNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLNewsViewController.h; sourceTree = "<group>"; };
+		8CE4C55B1C76F5190080AF93 /* CLNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNewsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,8 @@
 		8CE4C5471C76EBE60080AF93 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8CE4C55A1C76F5190080AF93 /* CLNewsViewController.h */,
+				8CE4C55B1C76F5190080AF93 /* CLNewsViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 				8CE4C5591C76EBE60080AF93 /* CLSHowContentTool.m in Sources */,
 				8CE4C5581C76EBE60080AF93 /* XTTabBarScrollView.m in Sources */,
 				8CE4C5571C76EBE60080AF93 /* XTTabBar.m in Sources */,
+				8CE4C55C1C76F5190080AF93 /* CLNewsViewController.m in Sources */,
 				8CE4C5561C76EBE60080AF93 /* XTPageViewController.m in Sources */,
 				8CE4C5211C76EB810080AF93 /* AppDelegate.m in Sources */,
 				8CE4C51E1C76EB810080AF93 /* main.m in Sources */,

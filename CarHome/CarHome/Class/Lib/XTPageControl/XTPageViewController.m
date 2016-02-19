@@ -170,10 +170,14 @@ static CGFloat kXTDefaultTabBarHeight = 35;
         }
         self.disableScroll = NO;
     }
+    
+    [self.delegate PageControllerWithCurrentPage:nextIndex];
+    
 }
 
 - (void)didChanged:(NSInteger)preIndex nextIndex:(NSInteger)nextIndex {
     self.pageScrollView.scrollEnabled = YES;
+    
 }
 
 #pragma mark scrollview delegate
@@ -197,6 +201,7 @@ static CGFloat kXTDefaultTabBarHeight = 35;
 
 - (void)showNextController:(NSInteger)nextPage {
     self.currentPage = nextPage;
+    
     UIViewController *nextController = [self.cachedControllers objectForKey:@(nextPage)];
     if (nextController == nil) {
         nextController = [self.dataSource constrollerOfPage:nextPage];
@@ -212,6 +217,9 @@ static CGFloat kXTDefaultTabBarHeight = 35;
     }
     self.currentController = nextController;
 }
+#pragma mark --back current page
+
+
 
 @end
 // 版权属于原作者
