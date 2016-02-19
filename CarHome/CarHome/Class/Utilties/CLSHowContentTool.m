@@ -14,7 +14,13 @@ static CLSHowContentTool *_manager;
 
 +(instancetype)sharedManager {
     
+    dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+       
+        _manager = [[self alloc] init];
+    });
     
+    return _manager;
     
 }
 @end
