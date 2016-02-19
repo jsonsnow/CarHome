@@ -28,6 +28,7 @@ CLNetManager *_manager;
         [path stringByAppendingString:[NSString stringWithFormat:@"?%@",params]];
     }
     
+    NSLog(@"%@",path);
    // NSString  *pathStr = [path  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:path];
     

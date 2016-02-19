@@ -63,3 +63,30 @@
 
 
 @end
+
+
+
+/*
+ "updatetime": "20160219162255",
+ "id": 74902,
+ "imgurl": "http://www3.autoimg.cn/newsdfs/g21/M0E/63/13/640x320_0_autohomecar__wKjBwlbFWNWAIjcyAAb2c1mN_vM673.jpg",
+ "title": "变化有诚意 试驾奔驰GLE 400 4MATIC",
+ "type": "原创",
+ "replycount": 0,
+ "pageindex": 1,
+ "JumpType": 0,
+ "jumpurl": "",
+ "mediatype": 2,
+ "fromtype": 0
+ 
+ */
+
+@interface CLHeaderModel : NSObject
+
+@property (nonatomic,assign) NSNumber *newsId;
+@property (nonatomic,strong) NSString *imageurl;
+@property (nonatomic,strong) NSString *title;
+
++(CLHeaderModel *)paresNewsModel:(NSDictionary *)dic;
+
+@end

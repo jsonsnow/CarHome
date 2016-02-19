@@ -48,10 +48,10 @@ static CLNewsTool *_manager;
 }
 
 -(void)getNews:(NSInteger)type
-                withTime:(NSString *)time
-                withPage:(NSInteger)page
-        withSuccessBlock:(void (^)(NSArray *))successHandler
-         withFailerBlock:(void (^)(NSURLResponse *, NSError *))failerHandler{
+               withTime:(NSString *)time withPage:(NSInteger)page
+               withSuccessBlock:(void (^)(NSArray *))successHandler
+               withFailerBlock:(void (^)(NSURLResponse *, NSError *))failerHandler
+               withHeaderBlock:(void (^)(NSArray *))headHandler{
     
     
     NSString *path = [self getCurentUrl:type WithTime:time andPage:page];
@@ -59,13 +59,27 @@ static CLNewsTool *_manager;
         NSDictionary *dic           = object;
         NSDictionary *resultDic     = dic[@"result"];
         NSArray *newsListArray      = resultDic[@"newslist"];
+        NSArray *newsFocusingArray  = resultDic[@"focusimg"];
         NSMutableArray *mutablArray = [NSMutableArray array];
         for (NSDictionary *newsDic in newsListArray) {
             
            CLNewsModel *model = [CLNewsModel paresNewsModel:newsDic];
            [mutablArray addObject:model];
         }
-        NSLog(@"currentThread:%@",[NSThread currentThread]);
+        NSMutableArray *focusArray  = [NSMutableArray array];
+        if (newsFocusingArray.count>0) {
+            
+            for (NSDictionary *dic in newsFocusingArray) {
+                
+                CLHeaderModel *header = [CLHeaderModel paresNewsModel:dic];
+                [focusArray addObject:header];
+                
+            }
+            
+            
+            
+        }
+        //NSLog(@"currentThread:%@",[NSThread currentThread]);
         successHandler([mutablArray copy]);
         
     } withFailerBlock:^(NSURLResponse *response, NSError *error) {

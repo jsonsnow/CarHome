@@ -10,10 +10,13 @@
 #import "CLNewsTool.h"
 #import "CLNewsModel.h"
 #import "CLNewsCell.h"
+#import "MJRefresh.h"
 
 @interface CLNewsViewController ()
 
 @property (nonatomic,strong) NSMutableArray *newsArray;
+@property (nonatomic,assign) NSInteger page;
+@property (nonatomic,strong) NSString *stringTime;
 
 @end
 
@@ -30,42 +33,122 @@
     return _newsArray;
 }
 
-//-(instancetype)initWithType:(NSInteger)num{
-//    
-//    if (self = [super init]) {
-//        
-//        _num = num;
-//    }
-//    
-//    return self ;
-//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.page = 1;
+    self.stringTime = @"0";
     [self loadNewsMessage];
+    [self loadLatestNews];
+    [self loadMoreNews];
+}
+
+#pragma mark -load message,LatestMessage,MoreMessage
+-(void)loadLatestNews{
+    
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+       
+        [[CLNewsTool shareNewsTool] getNews:self.num withTime:self.stringTime withPage:1 withSuccessBlock:^(NSArray *array) {
+           
+            
+            NSAssert([NSThread isMainThread], @"update ui must in mainThread");
+            CLNewsModel *model   = self.newsArray[0];
+            self.stringTime      = model.updatetime;
+            self.tableView.mj_header.lastUpdatedTimeKey = self.stringTime;
+            
+            
+            if (array.count==0||array==nil) {
+                
+                NSLog(@"获取数据失败");
+                [self.tableView.mj_header endRefreshing];
+                return ;
+            }
+            CLNewsModel *lasterNews = array[0];
+            if ([model.newsId isEqualToNumber:lasterNews.newsId]) {
+                NSLog(@"无新的数据");
+                [self.tableView.mj_header endRefreshing];
+                lasterNews = nil;
+                return ;
+                
+            }
+            
+             NSMutableArray *insetArray = [NSMutableArray array];
+            for (int i = 0; i<array.count; i++) {
+                
+                CLNewsModel *newsModel = array[i];
+                [self.newsArray insertObject:newsModel atIndex:i];
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                [insetArray addObject:indexPath];
+
+                if ([newsModel.newsId isEqualToNumber:model.newsId]) {
+                    
+                    break ;
+                }
+
+                
+            }
+            
+           
+            [self.tableView.mj_header endRefreshing];
+            [self.tableView insertRowsAtIndexPaths:insetArray withRowAnimation:UITableViewRowAnimationNone];
+            
+        } withFailerBlock:^(NSURLResponse *response, NSError *error) {
+            
+            [self.tableView.mj_header endRefreshing];
+            
+        }];
+        
+    }];
+    
+    
+}
+-(void)loadMoreNews{
+    
+   self.tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+      
+       self.page = self.page +1;
+       [[CLNewsTool shareNewsTool] getNews:self.num withTime:self.stringTime withPage:self.page withSuccessBlock:^(NSArray *array) {
+           
+           if (array.count==0||array==nil) {
+               
+               [self.tableView.mj_footer endRefreshingWithNoMoreData];
+               return ;
+           }
+           
+           NSAssert([NSThread isMainThread], @"update ui must in mainThread");
+           [self.newsArray addObjectsFromArray:array];
+           [self.tableView reloadData];
+           [self.tableView.mj_footer endRefreshing];
+           
+       } withFailerBlock:^(NSURLResponse *response, NSError *error) {
+           
+           [self.tableView.mj_footer endRefreshing];
+           
+       }];
+
+       
+   }];
+
+    //[self.tableView.mj_footer beginRefreshing];
+
 }
 
 -(void)loadNewsMessage{
     
-    [[CLNewsTool shareNewsTool] getNews:self.num withTime:@"0" withPage:1 withSuccessBlock:^(NSArray *array) {
+    [[CLNewsTool shareNewsTool] getNews:self.num withTime:@"0" withPage:self.page withSuccessBlock:^(NSArray *array) {
         
         [self.newsArray addObjectsFromArray:array];
         [self.tableView reloadData];
         
     } withFailerBlock:^(NSURLResponse *response, NSError *error) {
        
+        NSLog(@"加载失败");
         
     }];
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
-    
-}
+
 
 #pragma mark - Table view data source
 
@@ -92,6 +175,13 @@
     CLNewsModel *news    = self.newsArray[indexPath.row];
     CLNewsCell *newsCell =(CLNewsCell *) cell;
     newsCell.newsModel   = news;
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    
     
 }
 

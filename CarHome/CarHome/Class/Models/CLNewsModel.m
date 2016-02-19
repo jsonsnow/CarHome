@@ -32,4 +32,34 @@
     
 }
 
+
+@end
+
+@implementation CLHeaderModel
+
+
++(CLHeaderModel *)paresNewsModel:(NSDictionary *)dic{
+    
+    return [[CLHeaderModel alloc] paresNewsWithDic:dic];
+    
+}
+
+-(CLHeaderModel *)paresNewsWithDic:(NSDictionary *)dic{
+    
+    [self setValuesForKeysWithDictionary:dic];
+    return self;
+    
+}
+
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
+    
+    if ([key isEqualToString:@"id"]) {
+        
+        [self setValue:value forKey:@"newsId"];
+        
+    }
+    
+}
+
+
 @end
