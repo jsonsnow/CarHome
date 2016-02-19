@@ -55,6 +55,7 @@
 		8CE4C5D21C7702610080AF93 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5C01C7702610080AF93 /* UIImageView+HighlightedWebCache.m */; };
 		8CE4C5D31C7702610080AF93 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5C21C7702610080AF93 /* UIImageView+WebCache.m */; };
 		8CE4C5D41C7702610080AF93 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5C41C7702610080AF93 /* UIView+WebCacheOperation.m */; };
+		8CE4C5D71C7709040080AF93 /* CLNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5D61C7709040080AF93 /* CLNewsModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +155,8 @@
 		8CE4C5C21C7702610080AF93 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		8CE4C5C31C7702610080AF93 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		8CE4C5C41C7702610080AF93 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		8CE4C5D51C7709040080AF93 /* CLNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLNewsModel.h; sourceTree = "<group>"; };
+		8CE4C5D61C7709040080AF93 /* CLNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNewsModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +259,8 @@
 		8CE4C5511C76EBE60080AF93 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8CE4C5D51C7709040080AF93 /* CLNewsModel.h */,
+				8CE4C5D61C7709040080AF93 /* CLNewsModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -526,6 +531,7 @@
 				8CE4C5211C76EB810080AF93 /* AppDelegate.m in Sources */,
 				8CE4C51E1C76EB810080AF93 /* main.m in Sources */,
 				8CE4C5901C7701BB0080AF93 /* MJRefreshAutoFooter.m in Sources */,
+				8CE4C5D71C7709040080AF93 /* CLNewsModel.m in Sources */,
 				8CE4C5931C7701BB0080AF93 /* MJRefreshFooter.m in Sources */,
 				8CE4C59A1C7701BB0080AF93 /* MJRefreshBackStateFooter.m in Sources */,
 				8CE4C59F1C7701BB0080AF93 /* MJRefreshConst.m in Sources */,
