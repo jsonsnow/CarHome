@@ -7,54 +7,92 @@
 //
 
 #import "CLNewsViewController.h"
+#import "CLNewsTool.h"
+#import "CLNewsModel.h"
+#import "CLNewsCell.h"
 
 @interface CLNewsViewController ()
-@property (nonatomic,assign) NSInteger num;
+
+@property (nonatomic,strong) NSMutableArray *newsArray;
 
 @end
 
 @implementation CLNewsViewController
 
--(instancetype)initWithType:(NSInteger)num{
+-(NSMutableArray *)newsArray{
     
-    if (self = [super init]) {
+    
+    if (!_newsArray) {
         
-        _num = num;
+        _newsArray = [NSMutableArray array];
     }
     
-    return self ;
+    return _newsArray;
 }
+
+//-(instancetype)initWithType:(NSInteger)num{
+//    
+//    if (self = [super init]) {
+//        
+//        _num = num;
+//    }
+//    
+//    return self ;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self loadNewsMessage];
+}
 
+-(void)loadNewsMessage{
+    
+    [[CLNewsTool shareNewsTool] getNews:self.num withTime:@"0" withPage:1 withSuccessBlock:^(NSArray *array) {
+        
+        [self.newsArray addObjectsFromArray:array];
+        [self.tableView reloadData];
+        
+    } withFailerBlock:^(NSURLResponse *response, NSError *error) {
+       
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0;
+    return self.newsArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    CLNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Configure the cell...
     
     return cell;
+}
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CLNewsModel *news    = self.newsArray[indexPath.row];
+    CLNewsCell *newsCell =(CLNewsCell *) cell;
+    newsCell.newsModel   = news;
+    
 }
 
 

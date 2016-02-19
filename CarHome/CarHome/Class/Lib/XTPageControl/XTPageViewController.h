@@ -25,12 +25,6 @@
 
 @end
 
-@protocol XTPageViewControllerDelegate <NSObject>
-
-@optional
--(void)PageControllerWithCurrentPage:(NSInteger)page;
-
-@end
 
 @interface XTPageViewController : UIViewController
 
@@ -41,7 +35,6 @@
 //the data source of XTPageViewController
 @property (weak, nonatomic) id<XTPageViewControllerDataSource> dataSource;
 
-@property (nonatomic,weak)  id<XTPageViewControllerDelegate> delegate;
 
 //customize the left item view of XTPageViewController, defaul will be nil
 @property (strong, nonatomic) UIView *tabBarLeftItemView;

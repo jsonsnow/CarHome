@@ -28,7 +28,7 @@ static CLNewsTool *_manager;
 @implementation CLNewsTool
 +(instancetype)shareNewsTool{
     
-    dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
         _manager = [[self alloc] init];
@@ -36,10 +36,22 @@ static CLNewsTool *_manager;
     
     return _manager ;
 }
+-(instancetype)init{
+    
+    if (self = [super init]) {
+        
+        
+    }
+    
+    
+    return self;
+}
 
--(void)getNews:(NSInteger)type withTime:(NSString *)time withPage:(NSInteger)page
-                       withSuccessBlock:(void (^)(NSArray *))successHandler
-                        withFailerBlock:(void (^)(NSURLResponse *, NSError *))failerHandler{
+-(void)getNews:(NSInteger)type
+                withTime:(NSString *)time
+                withPage:(NSInteger)page
+        withSuccessBlock:(void (^)(NSArray *))successHandler
+         withFailerBlock:(void (^)(NSURLResponse *, NSError *))failerHandler{
     
     
     NSString *path = [self getCurentUrl:type WithTime:time andPage:page];
@@ -53,7 +65,7 @@ static CLNewsTool *_manager;
            CLNewsModel *model = [CLNewsModel paresNewsModel:newsDic];
            [mutablArray addObject:model];
         }
-        
+        NSLog(@"currentThread:%@",[NSThread currentThread]);
         successHandler([mutablArray copy]);
         
     } withFailerBlock:^(NSURLResponse *response, NSError *error) {

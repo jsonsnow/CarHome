@@ -56,7 +56,7 @@
 @property (nonatomic,strong) NSString *time;
 @property (nonatomic,strong) NSString *intacttime;
 @property (nonatomic,strong) NSString *updatetime;
-@property (nonatomic,strong) NSNumber *replyCount;
+@property (nonatomic,strong) NSNumber *replycount;
 @property (nonatomic,strong) NSString *smallpic;
 
 +(CLNewsModel *)paresNewsModel:(NSDictionary *)dic;

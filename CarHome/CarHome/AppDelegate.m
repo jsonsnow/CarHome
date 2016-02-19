@@ -19,11 +19,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    UIStoryboard *mainBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    XTPageViewController *pageViewController = [mainBoard instantiateViewControllerWithIdentifier:@"PageController"];
-    pageViewController.delegate   = [CLSHowContentTool sharedManager];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    XTPageViewController *pageViewController = [[XTPageViewController alloc] initWithTabBarStyle:XTTabBarStyleCursorSolid];
     pageViewController.dataSource = [CLSHowContentTool sharedManager];
+    self.window.rootViewController = pageViewController;
+    [self.window makeKeyAndVisible];
     
     
     return YES;

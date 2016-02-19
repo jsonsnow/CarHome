@@ -12,7 +12,7 @@ CLNetManager *_manager;
 @implementation CLNetManager
 +(instancetype)shareNetManager {
     
-    dispatch_once_t onceToken;
+    static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
        
         _manager = [[self alloc] init];
@@ -28,8 +28,8 @@ CLNetManager *_manager;
         [path stringByAppendingString:[NSString stringWithFormat:@"?%@",params]];
     }
     
-    NSString  *pathStr = [path  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *url = [NSURL URLWithString:pathStr];
+   // NSString  *pathStr = [path  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:path];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     

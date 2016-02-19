@@ -38,7 +38,7 @@ static CGFloat kXTDefaultTabBarHeight = 35;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        _style = XTTabBarStyleCursorUnderline;
+        _style = XTTabBarStyleCursorHollow;
     }
     return self;
 }
@@ -171,8 +171,7 @@ static CGFloat kXTDefaultTabBarHeight = 35;
         self.disableScroll = NO;
     }
     
-    [self.delegate PageControllerWithCurrentPage:nextIndex];
-    
+        
 }
 
 - (void)didChanged:(NSInteger)preIndex nextIndex:(NSInteger)nextIndex {

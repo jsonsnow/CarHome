@@ -12,7 +12,7 @@
 +(instancetype)shareNewsTool;
 -(void)getNews:(NSInteger)type
           withTime:(NSString *)time withPage:(NSInteger)page
-          withSuccessBlock:(void(^)(NSArray *))successHandler
+          withSuccessBlock:(void(^)(NSArray *array))successHandler
           withFailerBlock:(void(^)(NSURLResponse *response,NSError *error))failerHandler;
 
 

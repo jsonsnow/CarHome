@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface CLNewsViewController : UITableViewController
+@property (nonatomic,assign) NSInteger num;
 
--(instancetype)initWithType:(NSInteger)num;
+//-(instancetype)initWithType:(NSInteger)num;
 
 @end

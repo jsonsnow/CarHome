@@ -56,6 +56,7 @@
 		8CE4C5D31C7702610080AF93 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5C21C7702610080AF93 /* UIImageView+WebCache.m */; };
 		8CE4C5D41C7702610080AF93 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5C41C7702610080AF93 /* UIView+WebCacheOperation.m */; };
 		8CE4C5D71C7709040080AF93 /* CLNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5D61C7709040080AF93 /* CLNewsModel.m */; };
+		8CE4C5DA1C771AED0080AF93 /* CLNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5D91C771AED0080AF93 /* CLNewsCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +158,8 @@
 		8CE4C5C41C7702610080AF93 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		8CE4C5D51C7709040080AF93 /* CLNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLNewsModel.h; sourceTree = "<group>"; };
 		8CE4C5D61C7709040080AF93 /* CLNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNewsModel.m; sourceTree = "<group>"; };
+		8CE4C5D81C771AED0080AF93 /* CLNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLNewsCell.h; sourceTree = "<group>"; };
+		8CE4C5D91C771AED0080AF93 /* CLNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNewsCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +284,8 @@
 		8CE4C5551C76EBE60080AF93 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8CE4C5D81C771AED0080AF93 /* CLNewsCell.h */,
+				8CE4C5D91C771AED0080AF93 /* CLNewsCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -515,6 +520,7 @@
 				8CE4C5C91C7702610080AF93 /* SDWebImageDecoder.m in Sources */,
 				8CE4C5971C7701BB0080AF93 /* MJRefreshAutoStateFooter.m in Sources */,
 				8CE4C59B1C7701BB0080AF93 /* MJRefreshGifHeader.m in Sources */,
+				8CE4C5DA1C771AED0080AF93 /* CLNewsCell.m in Sources */,
 				8CE4C5D31C7702610080AF93 /* UIImageView+WebCache.m in Sources */,
 				8CE4C5CC1C7702610080AF93 /* SDWebImageManager.m in Sources */,
 				8CE4C5951C7701BB0080AF93 /* MJRefreshAutoGifFooter.m in Sources */,

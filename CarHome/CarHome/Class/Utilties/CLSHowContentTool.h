@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, NewsListType) {
 };
 
 
-@interface CLSHowContentTool : NSObject<XTPageViewControllerDataSource,XTPageViewControllerDelegate>
+@interface CLSHowContentTool : NSObject<XTPageViewControllerDataSource>
 
 +(instancetype)sharedManager;
 
