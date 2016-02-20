@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImageView (CLBlock)
++(instancetype)imageViewWithBlock:(void(^)(UIImageView *imageView))clickBlock;
 
 @end

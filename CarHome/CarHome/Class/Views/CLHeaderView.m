@@ -8,31 +8,31 @@
 
 #import "CLHeaderView.h"
 #import "UIImageView+WebCache.h"
+#import "UIImageView+CLBlock.h"
 
 #define SCREENWEIGHT  [UIScreen mainScreen].bounds.size.width
 #define SCREENHEIGHT  [UIScreen mainScreen].bounds.size.height
 @interface CLHeaderView ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong) UIPageControl *pageController;
-@property (nonatomic,strong) NSTimer *timer;
 @property (nonatomic,assign) NSInteger count;
 
 @end
 
 @implementation CLHeaderView
 
-+(instancetype)createHeagerView:(NSArray *)imageArray{
++(instancetype)createHeagerView:(NSArray *)imageArray withClickBlock:(void (^)(UIImageView *))clickBlock{
     
     if (imageArray==nil) {
         
         return nil;
     }
     
-    return [[CLHeaderView alloc] initWithcreateHeaderViewArray:imageArray];
+    return [[CLHeaderView alloc] initWithcreateHeaderViewArray:imageArray withClickBlock:clickBlock];
     
 }
 
--(instancetype)initWithcreateHeaderViewArray:(NSArray *)imageArray{
+-(instancetype)initWithcreateHeaderViewArray:(NSArray *)imageArray withClickBlock:(void(^)(UIImageView *imageView))clickBlock{
     
     if (self = [super init]) {
         
@@ -49,7 +49,8 @@
             for (int i = 0; i<imageArray.count; i++) {
         
                 CLHeaderModel *model   = imageArray[i];
-                UIImageView *imageView = [UIImageView new];
+                UIImageView *imageView = [UIImageView imageViewWithBlock:clickBlock];
+                imageView.tag          = i;
                 CGRect frame;
                 frame       = CGRectMake(SCREENWEIGHT*i, 0, SCREENWEIGHT, 150);
                // NSLog(@"%@",frame);

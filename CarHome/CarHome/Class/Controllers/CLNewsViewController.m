@@ -184,7 +184,11 @@
 #pragma mark - configure header view
 -(void)configurHeaderView:(NSArray *)array{
     
-    self.tableView.tableHeaderView = [CLHeaderView createHeagerView:array];
+    self.tableView.tableHeaderView = [CLHeaderView createHeagerView:array withClickBlock:^(UIImageView *image) {
+        
+        NSLog(@"image:%ld",(long)image.tag);
+        
+    }];
     self.tableView.tableHeaderView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 100);
     
 }

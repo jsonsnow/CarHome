@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CLNewsModel.h"
 @interface CLHeaderView : UIView
-+(instancetype)createHeagerView:(NSArray  *)imageArray;
++(instancetype)createHeagerView:(NSArray  *)imageArray
+               withClickBlock:(void(^)(UIImageView *image))clickBlock;
 +(void)destroyTimer;
 +(void)invokeTimer;
 

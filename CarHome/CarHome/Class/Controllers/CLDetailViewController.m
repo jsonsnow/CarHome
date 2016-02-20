@@ -10,13 +10,32 @@
 
 @interface CLDetailViewController ()
 
+@property (nonatomic,assign) NSInteger num;
+
 @end
 
 @implementation CLDetailViewController
 
+-(instancetype)initWithNewsId:(NSInteger)num{
+    
+    if (self = [super init]) {
+        
+        _num = num;
+        
+    }
+    
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UIWebView *webView = [UIWebView new];
+    webView.frame      = self.view.frame;
+    [self.view addSubview:webView];
+    NSString *path=[NSString stringWithFormat:@"http://cont.app.autohome.com.cn/autov5.0.0/content/news/newscontent-n%@-t0-rct1.json", _num];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

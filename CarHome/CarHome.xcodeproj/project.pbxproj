@@ -58,6 +58,8 @@
 		8CE4C5D71C7709040080AF93 /* CLNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5D61C7709040080AF93 /* CLNewsModel.m */; };
 		8CE4C5DA1C771AED0080AF93 /* CLNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5D91C771AED0080AF93 /* CLNewsCell.m */; };
 		8CE4C66F1C78382B0080AF93 /* CLHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C66E1C78382B0080AF93 /* CLHeaderView.m */; };
+		8CE4C6761C7884FA0080AF93 /* UIImageView+CLBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C6751C7884FA0080AF93 /* UIImageView+CLBlock.m */; };
+		8CE4C6791C788C900080AF93 /* CLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C6781C788C900080AF93 /* CLDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +165,10 @@
 		8CE4C5D91C771AED0080AF93 /* CLNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNewsCell.m; sourceTree = "<group>"; };
 		8CE4C66D1C78382B0080AF93 /* CLHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLHeaderView.h; sourceTree = "<group>"; };
 		8CE4C66E1C78382B0080AF93 /* CLHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLHeaderView.m; sourceTree = "<group>"; };
+		8CE4C6741C7884FA0080AF93 /* UIImageView+CLBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CLBlock.h"; sourceTree = "<group>"; };
+		8CE4C6751C7884FA0080AF93 /* UIImageView+CLBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CLBlock.m"; sourceTree = "<group>"; };
+		8CE4C6771C788C900080AF93 /* CLDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLDetailViewController.h; sourceTree = "<group>"; };
+		8CE4C6781C788C900080AF93 /* CLDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +226,7 @@
 		8CE4C5461C76EBE60080AF93 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				8CE4C6701C78849B0080AF93 /* Categeries */,
 				8CE4C5471C76EBE60080AF93 /* Controllers */,
 				8CE4C5481C76EBE60080AF93 /* Lib */,
 				8CE4C5511C76EBE60080AF93 /* Models */,
@@ -234,6 +241,8 @@
 			children = (
 				8CE4C55A1C76F5190080AF93 /* CLNewsViewController.h */,
 				8CE4C55B1C76F5190080AF93 /* CLNewsViewController.m */,
+				8CE4C6771C788C900080AF93 /* CLDetailViewController.h */,
+				8CE4C6781C788C900080AF93 /* CLDetailViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -428,6 +437,15 @@
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
+		8CE4C6701C78849B0080AF93 /* Categeries */ = {
+			isa = PBXGroup;
+			children = (
+				8CE4C6741C7884FA0080AF93 /* UIImageView+CLBlock.h */,
+				8CE4C6751C7884FA0080AF93 /* UIImageView+CLBlock.m */,
+			);
+			path = Categeries;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -519,6 +537,7 @@
 				8CE4C55C1C76F5190080AF93 /* CLNewsViewController.m in Sources */,
 				8CE4C5CA1C7702610080AF93 /* SDWebImageDownloader.m in Sources */,
 				8CE4C5C61C7702610080AF93 /* NSData+ImageContentType.m in Sources */,
+				8CE4C6791C788C900080AF93 /* CLDetailViewController.m in Sources */,
 				8CE4C59C1C7701BB0080AF93 /* MJRefreshNormalHeader.m in Sources */,
 				8CE4C5961C7701BB0080AF93 /* MJRefreshAutoNormalFooter.m in Sources */,
 				8CE4C5911C7701BB0080AF93 /* MJRefreshBackFooter.m in Sources */,
@@ -533,6 +552,7 @@
 				8CE4C5561C76EBE60080AF93 /* XTPageViewController.m in Sources */,
 				8CE4C66F1C78382B0080AF93 /* CLHeaderView.m in Sources */,
 				8CE4C5981C7701BB0080AF93 /* MJRefreshBackGifFooter.m in Sources */,
+				8CE4C6761C7884FA0080AF93 /* UIImageView+CLBlock.m in Sources */,
 				8CE4C5C51C7702610080AF93 /* MKAnnotationView+WebCache.m in Sources */,
 				8CE4C5921C7701BB0080AF93 /* MJRefreshComponent.m in Sources */,
 				8CE4C5621C7700830080AF93 /* CLNewsTool.m in Sources */,
