@@ -48,15 +48,13 @@
     
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
        
-        [[CLNewsTool shareNewsTool] getNews:self.num withTime:self.stringTime withPage:1 withSuccessBlock:^(NSArray *array) {
-           
+        [[CLNewsTool shareNewsTool] getNews:self.num withTime:self.stringTime withPage:0 withSuccessBlock:^(NSArray *array) {
             
             NSAssert([NSThread isMainThread], @"update ui must in mainThread");
             CLNewsModel *model   = self.newsArray[0];
             self.stringTime      = model.updatetime;
             self.tableView.mj_header.lastUpdatedTimeKey = self.stringTime;
-            
-            
+        
             if (array.count==0||array==nil) {
                 
                 NSLog(@"获取数据失败");
@@ -72,34 +70,37 @@
                 
             }
             
-             NSMutableArray *insetArray = [NSMutableArray array];
+            NSMutableArray *insetArray = [NSMutableArray array];
             for (int i = 0; i<array.count; i++) {
                 
                 CLNewsModel *newsModel = array[i];
                 [self.newsArray insertObject:newsModel atIndex:i];
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 [insetArray addObject:indexPath];
-
+                
                 if ([newsModel.newsId isEqualToNumber:model.newsId]) {
                     
                     break ;
                 }
-
+                
                 
             }
             
-           
+            
             [self.tableView.mj_header endRefreshing];
             [self.tableView insertRowsAtIndexPaths:insetArray withRowAnimation:UITableViewRowAnimationNone];
-            
+
         } withFailerBlock:^(NSURLResponse *response, NSError *error) {
             
-            [self.tableView.mj_header endRefreshing];
+             [self.tableView.mj_header endRefreshing];
             
-        }];
+        } withHeaderBlock:^(NSArray *array) {
+            
+            
+        } ];
+        
         
     }];
-    
     
 }
 -(void)loadMoreNews{
@@ -119,10 +120,14 @@
            [self.newsArray addObjectsFromArray:array];
            [self.tableView reloadData];
            [self.tableView.mj_footer endRefreshing];
+
            
        } withFailerBlock:^(NSURLResponse *response, NSError *error) {
            
-           [self.tableView.mj_footer endRefreshing];
+            [self.tableView.mj_footer endRefreshing];
+           
+       } withHeaderBlock:^(NSArray *array) {
+           
            
        }];
 
@@ -135,17 +140,20 @@
 
 -(void)loadNewsMessage{
     
-    [[CLNewsTool shareNewsTool] getNews:self.num withTime:@"0" withPage:self.page withSuccessBlock:^(NSArray *array) {
+    [[CLNewsTool shareNewsTool] getNews:self.num withTime:self.stringTime withPage:self.page withSuccessBlock:^(NSArray *array) {
         
         [self.newsArray addObjectsFromArray:array];
         [self.tableView reloadData];
         
     } withFailerBlock:^(NSURLResponse *response, NSError *error) {
-       
-        NSLog(@"加载失败");
         
-    }];
-    
+          NSLog(@"加载失败");
+        
+    } withHeaderBlock:^(NSArray *array) {
+        
+    } ];
+      
+            
 }
 
 
