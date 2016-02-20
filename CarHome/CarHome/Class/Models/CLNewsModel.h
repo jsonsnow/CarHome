@@ -84,7 +84,7 @@
 @interface CLHeaderModel : NSObject
 
 @property (nonatomic,assign) NSNumber *newsId;
-@property (nonatomic,strong) NSString *imageurl;
+@property (nonatomic,strong) NSString *imgurl;
 @property (nonatomic,strong) NSString *title;
 
 +(CLHeaderModel *)paresNewsModel:(NSDictionary *)dic;

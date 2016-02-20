@@ -49,38 +49,55 @@ static CLNewsTool *_manager;
 
 -(void)getNews:(NSInteger)type
                withTime:(NSString *)time withPage:(NSInteger)page
-               withSuccessBlock:(void (^)(NSArray *))successHandler
+              withSuccessBlock:(void (^)(NSArray *))successHandler
                withFailerBlock:(void (^)(NSURLResponse *, NSError *))failerHandler
                withHeaderBlock:(void (^)(NSArray *))headHandler{
     
     
     NSString *path = [self getCurentUrl:type WithTime:time andPage:page];
     [[CLNetManager shareNetManager] getByUrl:path andParams:nil withSuccessBlock:^(id object, NSURLResponse *response) {
-        NSDictionary *dic           = object;
-        NSDictionary *resultDic     = dic[@"result"];
-        NSArray *newsListArray      = resultDic[@"newslist"];
-        NSArray *newsFocusingArray  = resultDic[@"focusimg"];
-        NSMutableArray *mutablArray = [NSMutableArray array];
-        for (NSDictionary *newsDic in newsListArray) {
+        
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+           
             
-           CLNewsModel *model = [CLNewsModel paresNewsModel:newsDic];
-           [mutablArray addObject:model];
-        }
-        NSMutableArray *focusArray  = [NSMutableArray array];
-        if (newsFocusingArray.count>0) {
-            
-            for (NSDictionary *dic in newsFocusingArray) {
+            NSDictionary *dic           = object;
+            NSDictionary *resultDic     = dic[@"result"];
+            NSArray *newsListArray      = resultDic[@"newslist"];
+            NSArray *newsFocusingArray  = resultDic[@"focusimg"];
+            NSMutableArray *mutablArray = [NSMutableArray array];
+            for (NSDictionary *newsDic in newsListArray) {
                 
-                CLHeaderModel *header = [CLHeaderModel paresNewsModel:dic];
-                [focusArray addObject:header];
+                CLNewsModel *model = [CLNewsModel paresNewsModel:newsDic];
+                [mutablArray addObject:model];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+               
+                successHandler([mutablArray copy]);
+                
+            });
+            
+            NSMutableArray *focusArray  = [NSMutableArray array];
+            if (newsFocusingArray.count>0) {
+                
+                for (NSDictionary *dic in newsFocusingArray) {
+                    
+                    CLHeaderModel *header = [CLHeaderModel paresNewsModel:dic];
+                    [focusArray addObject:header];
+                    
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    headHandler([focusArray copy]);
+                    
+                });
                 
             }
+
             
-            
-            
-        }
-        //NSLog(@"currentThread:%@",[NSThread currentThread]);
-        successHandler([mutablArray copy]);
+        });
+                //NSLog(@"currentThread:%@",[NSThread currentThread]);
+        
         
     } withFailerBlock:^(NSURLResponse *response, NSError *error) {
         

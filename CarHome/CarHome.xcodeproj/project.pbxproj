@@ -57,6 +57,7 @@
 		8CE4C5D41C7702610080AF93 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5C41C7702610080AF93 /* UIView+WebCacheOperation.m */; };
 		8CE4C5D71C7709040080AF93 /* CLNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5D61C7709040080AF93 /* CLNewsModel.m */; };
 		8CE4C5DA1C771AED0080AF93 /* CLNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C5D91C771AED0080AF93 /* CLNewsCell.m */; };
+		8CE4C66F1C78382B0080AF93 /* CLHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4C66E1C78382B0080AF93 /* CLHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +161,8 @@
 		8CE4C5D61C7709040080AF93 /* CLNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNewsModel.m; sourceTree = "<group>"; };
 		8CE4C5D81C771AED0080AF93 /* CLNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLNewsCell.h; sourceTree = "<group>"; };
 		8CE4C5D91C771AED0080AF93 /* CLNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLNewsCell.m; sourceTree = "<group>"; };
+		8CE4C66D1C78382B0080AF93 /* CLHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLHeaderView.h; sourceTree = "<group>"; };
+		8CE4C66E1C78382B0080AF93 /* CLHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +289,8 @@
 			children = (
 				8CE4C5D81C771AED0080AF93 /* CLNewsCell.h */,
 				8CE4C5D91C771AED0080AF93 /* CLNewsCell.m */,
+				8CE4C66D1C78382B0080AF93 /* CLHeaderView.h */,
+				8CE4C66E1C78382B0080AF93 /* CLHeaderView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -526,6 +531,7 @@
 				8CE4C5951C7701BB0080AF93 /* MJRefreshAutoGifFooter.m in Sources */,
 				8CE4C5A01C7701BB0080AF93 /* UIScrollView+MJExtension.m in Sources */,
 				8CE4C5561C76EBE60080AF93 /* XTPageViewController.m in Sources */,
+				8CE4C66F1C78382B0080AF93 /* CLHeaderView.m in Sources */,
 				8CE4C5981C7701BB0080AF93 /* MJRefreshBackGifFooter.m in Sources */,
 				8CE4C5C51C7702610080AF93 /* MKAnnotationView+WebCache.m in Sources */,
 				8CE4C5921C7701BB0080AF93 /* MJRefreshComponent.m in Sources */,
@@ -687,6 +693,7 @@
 				8CE4C5321C76EB810080AF93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

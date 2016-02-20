@@ -63,6 +63,8 @@ static CGFloat kXTDefaultTabBarHeight = 35;
 }
 
 - (void)didReceiveMemoryWarning {
+    
+    [super didReceiveMemoryWarning];
     [self clearCache];
 }
 

@@ -22,7 +22,7 @@ CLNetManager *_manager;
 }
 -(void)getByUrl:(NSString *)path andParams:(NSString *)params
             withSuccessBlock:(void (^)(id, NSURLResponse *))successHandler
-            withFailerBlock:(void (^)(NSURLResponse *, NSError *))failerHandler{
+             withFailerBlock:(void (^)(NSURLResponse *, NSError *))failerHandler{
     
     if (params) {
         [path stringByAppendingString:[NSString stringWithFormat:@"?%@",params]];

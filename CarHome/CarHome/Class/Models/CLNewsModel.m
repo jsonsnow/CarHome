@@ -17,10 +17,12 @@
 
 -(CLNewsModel *)paresNewsWithDic:(NSDictionary *)dic{
     
+    
     [self setValuesForKeysWithDictionary:dic];
     return self;
     
 }
+
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key{
     
