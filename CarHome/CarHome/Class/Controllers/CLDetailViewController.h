@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CLDetailViewController : UIViewController
--(instancetype) initWithNewsId:(NSInteger)num;
+-(instancetype) initWithNewsId:(NSNumber *)num;
 
 @end

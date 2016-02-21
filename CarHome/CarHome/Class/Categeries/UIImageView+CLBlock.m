@@ -22,7 +22,12 @@ const char *imageView;
     
     if (self = [super init]) {
         
-        objc_setAssociatedObject(self, &imageView, clickBlock, OBJC_ASSOCIATION_COPY);
+        
+        if (!objc_getAssociatedObject(self, &imageView)) {
+            
+            objc_setAssociatedObject(self, &imageView, clickBlock, OBJC_ASSOCIATION_COPY);
+        }
+        
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImageView)];
         tap.numberOfTapsRequired    = 1;
         self.userInteractionEnabled = YES;

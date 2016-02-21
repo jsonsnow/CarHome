@@ -12,6 +12,7 @@
 #import "CLNewsCell.h"
 #import "MJRefresh.h"
 #import "CLHeaderView.h"
+#import "CLDetailViewController.h"
 
 @interface CLNewsViewController ()
 
@@ -37,6 +38,7 @@
 
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.page = 1;
     self.stringTime = @"0";
@@ -100,8 +102,15 @@
             
         } withHeaderBlock:^(NSArray *array) {
             
-                        //[self.tableView.mj_header addSubview:[CLHeaderView createHeagerView:array]];
             
+            CLHeaderModel *model    = self.headerArray[0];
+            CLHeaderModel *newModel = array[0];
+            if ([model.newsId isEqualToNumber:newModel.newsId]) {
+                
+                return ;
+            }
+            
+            [self configurHeaderView:array];
             
         } ];
         
@@ -163,18 +172,11 @@
         
         if (array.count>0) {
             
-            UIView *view = [UIView new];
-            view.frame =CGRectMake(0, 0, 320, 100);
-            view.backgroundColor = [UIColor grayColor];
-            UIScrollView *sv = [UIScrollView new];
-            sv.frame = view.frame;
-            [view addSubview:sv];
-            self.tableView.tableHeaderView = view;
-//            [self  tableView:self.tableView viewForHeaderInSection:0];
-//            [self  tableView:self.tableView heightForHeaderInSection:0];
-
+            
+             [self configurHeaderView:array];
+            
         }
-        [self configurHeaderView:array];
+       
         
     } ];
       
@@ -242,6 +244,18 @@
     CLNewsModel *news    = self.newsArray[indexPath.row];
     CLNewsCell *newsCell =(CLNewsCell *) cell;
     newsCell.newsModel   = news;
+    
+}
+
+#pragma mark -table view delegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    CLNewsModel *news = self.newsArray[indexPath.row];
+    CLDetailViewController *detailController = [[CLDetailViewController alloc] initWithNewsId:news.newsId];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:detailController];
+    [self presentViewController:nvc animated:YES completion:nil];
+    
     
 }
 

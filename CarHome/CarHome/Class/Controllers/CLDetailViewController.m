@@ -7,16 +7,17 @@
 //
 
 #import "CLDetailViewController.h"
+#import "UIBarButtonItem+CLBlock.h"
 
 @interface CLDetailViewController ()
 
-@property (nonatomic,assign) NSInteger num;
+@property (nonatomic,assign) NSNumber * num;
 
 @end
 
 @implementation CLDetailViewController
 
--(instancetype)initWithNewsId:(NSInteger)num{
+-(instancetype)initWithNewsId:(NSNumber *)num{
     
     if (self = [super init]) {
         
@@ -29,12 +30,20 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     UIWebView *webView = [UIWebView new];
     webView.frame      = self.view.frame;
     [self.view addSubview:webView];
     NSString *path=[NSString stringWithFormat:@"http://cont.app.autohome.com.cn/autov5.0.0/content/news/newscontent-n%@-t0-rct1.json", _num];
-    
+    NSLog(@"%@",path);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+    [webView loadRequest:request];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem barButtonWithTiele:@"返回" andType:UIBarButtonItemStyleDone andBlock:^(UIBarButtonItem *barButton) {
+       
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    }];
     
 }
 
