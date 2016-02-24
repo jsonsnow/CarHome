@@ -200,10 +200,10 @@
     
     [super viewWillAppear:animated];
     
-//    if (self.tableView.tableHeaderView) {
-//        
-//        //[CLHeaderView invokeTimer];
-//    }
+    if (self.tableView.tableHeaderView) {
+        
+       [CLHeaderView invokeTimer];
+    }
     
 }
 
@@ -212,10 +212,10 @@
     
     [super viewWillDisappear:animated];
     
-//    if (self.tableView.tableHeaderView) {
-//        
-//        //[CLHeaderView destroyTimer];
-//    }
+    if (self.tableView.tableHeaderView) {
+        
+        [CLHeaderView destroyTimer];
+    }
     
 }
 

@@ -12,10 +12,13 @@
 
 #define SCREENWEIGHT  [UIScreen mainScreen].bounds.size.width
 #define SCREENHEIGHT  [UIScreen mainScreen].bounds.size.height
-@interface CLHeaderView ()<UIScrollViewDelegate>
 
+static NSTimer *_timer;
+@interface CLHeaderView ()<UIScrollViewDelegate>
 @property (nonatomic,strong) UIPageControl *pageController;
 @property (nonatomic,assign) NSInteger count;
+@property (nonatomic,weak)   UIScrollView *scrollView;
+@property (nonatomic,assign) NSInteger num;
 
 @end
 
@@ -38,11 +41,12 @@
         
         
         UIScrollView *scorllView = [UIScrollView new];
-            self.count = imageArray.count;
-            scorllView.showsHorizontalScrollIndicator = NO;
-            scorllView.showsVerticalScrollIndicator   = NO;
-            scorllView.pagingEnabled                  = YES;
-            scorllView.delegate      = self;
+        _scrollView = scorllView;
+        self.count  = imageArray.count;
+        scorllView.showsHorizontalScrollIndicator = NO;
+        scorllView.showsVerticalScrollIndicator   = NO;
+        scorllView.pagingEnabled                  = YES;
+        scorllView.delegate      = self;
         scorllView.frame = CGRectMake(0, 0, SCREENWEIGHT, 150);
         scorllView.contentSize = CGSizeMake(SCREENWEIGHT*self.count, 150);
         self.frame       = CGRectMake(0, 0, SCREENWEIGHT, 150);
@@ -67,31 +71,41 @@
             self.pageController.userInteractionEnabled = NO;
             [self addSubview:scorllView];
             [self addSubview:self.pageController];
-
+        
+        self.num = 0;
+        if (!_timer) {
+            
+            _timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(chagePage) userInfo:nil repeats:YES];
+            
+            
+        }
         
     }
     
        return self ;
 }
 
-//-(void)chagePage{
-//    
-//    if (self.pageController.currentPage<self.count) {
-//        
-//        self.pageController.currentPage = self.pageController.currentPage + 1;
-//        [_scorlView scrollRectToVisible:CGRectMake(0, self.pageController.currentPage*SCREENWEIGHT, SCREENWEIGHT, 100) animated:YES];
-//        
-//    } else {
-//        
-//        self.pageController.currentPage = 0;
-//    }
-//    
-//    
-//}
+-(void)chagePage{
+    
+    
+    self.pageController.currentPage = self.num;
+    _scrollView.contentOffset = CGPointMake(self.num*SCREENWEIGHT, 0);
+    self.num++;
+
+    if (self.num == self.count) {
+        
+        self.num = 0;
+        
+
+    }
+    
+    
+}
 
 +(void)invokeTimer{
     
-    
+    [_timer invalidate];
+    _timer = nil;
     
     
 }
@@ -99,6 +113,12 @@
 +(void)destroyTimer{
     
     
+    if (!_timer) {
+        
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(chagePage) userInfo:nil repeats:YES];
+        
+
+    }
     
 }
 
