@@ -81,7 +81,7 @@ static NSTimer *_timer;
         }
         
     }
-    
+
        return self ;
 }
 
@@ -104,21 +104,27 @@ static NSTimer *_timer;
 
 +(void)invokeTimer{
     
-    [_timer invalidate];
-    _timer = nil;
-    
-    
-}
-
-+(void)destroyTimer{
-    
     
     if (!_timer) {
         
         _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(chagePage) userInfo:nil repeats:YES];
         
-
+        
     }
+
+    
+}
+
++(void)destroyTimer{
+    
+    if (_timer) {
+        
+        [_timer invalidate];
+        _timer = nil;
+        NSLog(@"定时器销毁");
+        
+    }
+    
     
 }
 

@@ -200,11 +200,7 @@
     
     [super viewWillAppear:animated];
     
-    if (self.tableView.tableHeaderView) {
-        
-       [CLHeaderView invokeTimer];
-    }
-    
+       
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

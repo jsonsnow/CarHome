@@ -15,7 +15,7 @@ const char * barBarItem;
                           andType:(UIBarButtonItemStyle)type
                          andBlock:(void (^)(UIBarButtonItem *))buttonItem{
     
-    
+
     return [[self alloc] initWithTitleBlock:title style:type target:self action:buttonItem];
     
 }
