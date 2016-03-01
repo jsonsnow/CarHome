@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SQLInterface.h"
+@interface CLNewsTool : NSObject<SQLInterface>
 
-@interface CLNewsTool : NSObject
 +(instancetype)shareNewsTool;
 -(void)getNews:(NSInteger)type
           withTime:(NSString *)time withPage:(NSInteger)page
@@ -16,5 +17,9 @@
           withFailerBlock:(void(^)(NSURLResponse *response,NSError *error))failerHandler
           withHeaderBlock:(void(^)(NSArray *array))headHandler;
 
+
+-(BOOL)deleteDataWithType:(NSInteger)num;
+-(BOOL)saveData:(NSArray *)newsArray andy:(NSInteger)num;
+-(void)loadData:(NSInteger)num andResult:(void(^)(NSArray *reuslt))resultHandle;
 
 @end

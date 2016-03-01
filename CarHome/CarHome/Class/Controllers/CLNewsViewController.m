@@ -66,6 +66,11 @@
                 [self.tableView.mj_header endRefreshing];
                 return ;
             }
+            NSLog(@"%ld",self.num);
+            [[CLNewsTool shareNewsTool] deleteDataWithType:self.num];
+            [[CLNewsTool shareNewsTool] saveData:array andy:self.num];
+            
+            
             CLNewsModel *lasterNews = array[0];
             if ([model.newsId isEqualToNumber:lasterNews.newsId]) {
                 NSLog(@"无新的数据");
@@ -98,6 +103,7 @@
         } withFailerBlock:^(NSURLResponse *response, NSError *error) {
             
              [self.tableView.mj_header endRefreshing];
+            
             
             
         } withHeaderBlock:^(NSArray *array) {
@@ -142,6 +148,7 @@
             [self.tableView.mj_footer endRefreshing];
            
            
+           
        } withHeaderBlock:^(NSArray *array) {
            
            
@@ -160,12 +167,23 @@
     __weak  typeof(CLNewsViewController) *mySelf = self;
     [[CLNewsTool shareNewsTool] getNews:self.num withTime:self.stringTime withPage:self.page withSuccessBlock:^(NSArray *array) {
         
+        
+
         [mySelf.newsArray addObjectsFromArray:array];
         [mySelf.tableView reloadData];
+        [[CLNewsTool shareNewsTool] deleteDataWithType:self.num];
+        [[CLNewsTool shareNewsTool] saveData:array andy:self.num];
         
     } withFailerBlock:^(NSURLResponse *response, NSError *error) {
         
           NSLog(@"加载失败");
+         [[CLNewsTool shareNewsTool] loadData:self.num andResult:^(NSArray *reuslt) {
+            
+             mySelf.newsArray = [reuslt mutableCopy];
+             [mySelf.tableView reloadData];
+             
+         }];
+        
         
     } withHeaderBlock:^(NSArray *array) {
         

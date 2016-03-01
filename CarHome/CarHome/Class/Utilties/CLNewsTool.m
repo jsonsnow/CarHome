@@ -9,6 +9,8 @@
 #import "CLNewsTool.h"
 #import "CLNetManager.h"
 #import "CLNewsModel.h"
+#import "SQL.h"
+#import "CLFMDBtoll.h"
 
 typedef NS_ENUM(NSUInteger, NewsListType) {
     NewsListTypeZuiXin,     //最新
@@ -40,7 +42,10 @@ static CLNewsTool *_manager;
     
     if (self = [super init]) {
         
-        
+        FMDatabase *db = [CLFMDBtoll sharedDatabase];
+        [db executeUpdate:createNewsSQl];
+        [db close];
+
     }
     
     
@@ -151,6 +156,103 @@ static CLNewsTool *_manager;
     return path;
 
 }
+-(BOOL)deleteDataWithType:(NSInteger)num {
+    
+    
+    BOOL isSueeces = NO;
+    FMDatabase *db = [CLFMDBtoll sharedDatabase];
+    isSueeces = [db executeUpdateWithFormat:@"delete from news where thetype = %@",@(num)];
+    [db close];
+    return isSueeces;
+    
+}
+-(void)loadData:(NSInteger)num andResult:(void (^)(NSArray *))resultHandle{
+    
+    FMDatabase *db =  [CLFMDBtoll sharedDatabase];
+    FMResultSet *set = [db executeQueryWithFormat:@"select *from news where thetype = %@",@(num)];
+    NSMutableArray *newsArray = [NSMutableArray array];
+    while ([set next]) {
+        
+        CLNewsModel *news = [CLNewsModel new];
+        news.newsId = [set objectForColumnName:@"newsId"];
+        news.title  = [set objectForColumnName:@"title"];
+        news.replycount = [set objectForColumnName:@"replycount"];
+        news.time = [set objectForColumnName:@"time"];
+        news.smallpic = [set stringForColumn:@"imageurl"];
+        news.updatetime = [set stringForColumn:@"updatetime"];
+    
+        [newsArray addObject:news];
+        
+    }
+    [set close];
+    [db close];
+    resultHandle([newsArray copy]);
+    
+
+    
+}
+-(BOOL)saveData:(NSArray *)newsArray andy:(NSInteger)num {
+    
+    BOOL isSucesss = NO;
+    
+    FMDatabase *db = [CLFMDBtoll sharedDatabase];
+    
+    for (CLNewsModel *news in newsArray) {
+        
+      
+        [db executeUpdate:saveNewsSQL,news.newsId,news.title,news.time,news.replycount,@(num),news.smallpic,news.updatetime];
+        
+    }
+    [db close];
+    return isSucesss;
+
+    
+}
+
+//-(void)loadData:(void (^)(NSArray *))resultHandle {
+//    
+//    FMDatabase *db =  [CLFMDBtoll sharedDatabase];
+//    FMResultSet *set = [db executeQuery:selectNewsSQL];
+//    
+//    NSMutableArray *newsArray = [NSMutableArray array];
+//    while ([set next]) {
+//        
+//        CLNewsModel *news = [CLNewsModel new];
+//        news.newsId = [set objectForColumnName:@"newsId"];
+//        news.title  = [set objectForColumnName:@"title"];
+//        news.replycount = [set objectForColumnName:@"replycount"];
+//        news.time = [set objectForColumnName:@"time"];
+//        [newsArray addObject:news];
+//        
+//    }
+//    [set close];
+//    resultHandle([newsArray copy]);
+//    
+//}
+//-(BOOL)deleteData {
+//    
+//    BOOL isSueeces = NO;
+//    FMDatabase *db = [CLFMDBtoll sharedDatabase];
+//    isSueeces = [db executeUpdate:deleteNewsSQL];
+//    [db close];
+//    return isSueeces;
+//    
+//}
+//-(BOOL)saveData:(NSArray *)newsArray {
+//    
+//    BOOL isSucesss = NO;
+//    FMDatabase *db = [CLFMDBtoll sharedDatabase];
+//    
+//    for (CLNewsModel *news in newsArray) {
+//        
+//       isSucesss = [db executeUpdate:saveNewsSQL,news.newsId,news.title,news.time,news.replycount];
+//        
+//    }
+//    [db close];
+//    return isSucesss;
+//    
+//}
+
 
 
 @end

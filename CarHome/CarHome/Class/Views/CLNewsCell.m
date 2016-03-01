@@ -30,7 +30,7 @@
 }
 
 -(void)setViewMessage:(CLNewsModel *)news{
-    
+   
     [self.iconImage sd_setImageWithURL:[NSURL URLWithString:news.smallpic] placeholderImage:[UIImage imageNamed:@"placeholder_deal"] completed:nil];
     self.contentLabel.text     = news.title;
     self.timeLable.text        = news.time;
@@ -44,8 +44,9 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
+
 
 @end
